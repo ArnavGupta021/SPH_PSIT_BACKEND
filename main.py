@@ -58,6 +58,7 @@ def get_startup_details():
             "contact_details": row[4]
         })
     return {"data":response_data}
+
 @app.post("/api/register_user")
 def register_user(email:str, password:str,name:str):
     db=sqlite3.connect('database.db')
@@ -69,6 +70,7 @@ def register_user(email:str, password:str,name:str):
     db.commit()
     db.close()
     return {"message":"successfully registered"}
+
 @app.post("/api/login")
 def login_user(email:str, password:str):
     db=sqlite3.connect('database.db')
@@ -83,3 +85,7 @@ def login_user(email:str, password:str):
         return {"message":"successfully logged in","deatils":l}
     else:
         return {"message":"invalid credentials"}
+
+@app.get('/api/blog')
+def blog():
+    return {}
